@@ -22,6 +22,7 @@ var MongoDBStore = require('connect-mongodb-session')(session);
 // *********************************************************** //
 const ToDoItem = require("./models/ToDoItem")
 const Overheard = require('./models/Overheard')
+const SaleItem = require('./models/SaleItem')
 
 // *********************************************************** //
 //  Connecting to the database 
@@ -129,6 +130,35 @@ const isLoggedIn = (req,res,next) => {
 app.get("/", (req, res, next) => {
   res.render("index");
 });
+
+app.get('/listSale',
+  (req,res,next) => {
+    res.render('listSale')
+  })
+
+app.post('/saleItem',
+isLoggedIn,
+async (req,res,next) => {
+  const {itemTitle, price, imgURI, description} = req.body
+  const item = new SaleItem({
+    userId: req.session.user._id,
+    item:itemTitle,
+    price:price,
+    image:imgURI,
+    description:description,
+    createAt: new Date()
+  })
+  await item.save()
+  res.redirect('/saleItem')
+})
+
+app.get('/saleItem', 
+  async (req,res,next) => {
+    const items = await SaleItem.find({})
+    res.json(items)
+    //res.render('overheard')
+})
+
 
 
 app.get('/overheardForm',

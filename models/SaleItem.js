@@ -3,7 +3,7 @@ const mongoose = require( 'mongoose' );
 const Schema = mongoose.Schema;
 const ObjectId = Schema.Types.ObjectId;
 
-var toDoItemSchema = Schema( {
+var SaleItemSchema = Schema( {
   userId: ObjectId,
   itemTitle: String,
   price: Number,
@@ -12,4 +12,4 @@ var toDoItemSchema = Schema( {
   createdAt: Date,
 } );
 
-module.exports = mongoose.model( 'SaleItem', toDoItemSchema );
+module.exports = mongoose.model( 'SaleItem', SaleItemSchema );

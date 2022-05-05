@@ -1,0 +1,11 @@
+<ol>
+    <% for (item of items){%>
+        <li class="mb-2">          
+            <%= item.userId%><br>
+            <%= item.itemTitle%><br>
+            <%= item.price%><br>
+            <img src=<%= item.imgURI%> class="img-thumbnail" style="height:200px; width:200px;"><br>
+            <%= item.description%><br>
+        </li>
+    <% }%>
+</ol>

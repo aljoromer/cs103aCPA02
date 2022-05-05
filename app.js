@@ -142,9 +142,9 @@ async (req,res,next) => {
   const {itemTitle, price, imgURI, description} = req.body
   const item = new SaleItem({
     userId: req.session.user._id,
-    item:itemTitle,
+    itemTitle:itemTitle,
     price:price,
-    image:imgURI,
+    imgURI:imgURI,
     description:description,
     createAt: new Date()
   })
@@ -159,6 +159,19 @@ app.get('/saleItem',
     //res.render('overheard')
 })
 
+app.get('/forSale',
+  isLoggedIn,   // redirect to /login if user is not logged in
+  async (req,res,next) => {
+    try{
+      let userId = res.locals.user._id;  // get the user's id
+      let items = await SaleItem.find(); // lookup the user's todo items
+      res.locals.items = items;  //make the items available in the view
+      res.render("forSale");  // render to the toDo page
+    } catch (e){
+      next(e);
+    }
+  }
+  )
 
 
 app.get('/overheardForm',

@@ -1,7 +1,8 @@
-# CS103a Express App Demo
+# CS103a Creative Programming Assignment 02
 
-This is a starter project which has a simple authentication module 
-and provides access to a mongoose database in the cloud.
+This is a very basic node.js project designed to showcase knowledge of node.js, Express, Mongodb Atlas, and Heroku.
+
+It allows an authenticated user to list items for sale.
 
 ## Installation
 Download the project from github and download nodejs and npm from https://nodejs.org
